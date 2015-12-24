@@ -86,7 +86,7 @@ const FilterLink = ({
 const Footer = ({
   visibilityFilter,
   onFilterClick
-}) => {
+}) => (
   <p>
     Show:
     {' '}
@@ -114,7 +114,7 @@ const Footer = ({
       Completed
     </FilterLink>
   </p>
-};
+);
 
 const Todo = ({
   onClick,
@@ -151,20 +151,22 @@ const TodoList = ({
 );
 
 const AddTodo = ({
-  onClick
+  onAddClick
 }) => {
   let input;
 
   return (
-    <input ref={node => {
-      input = node;
-    }} />
-    <button onClick={() => {
-      onAddClick(input.value);
-      input.value = '';
-    }}>
-      Add Todo
-    </button>
+    <div>
+      <input ref={node => {
+        input = node;
+      }} />
+      <button onClick={() => {
+        onAddClick(input.value);
+        input.value = '';
+      }}>
+        Add Todo
+      </button>
+    </div>
   );
 };
 
@@ -187,6 +189,7 @@ const getVisibleTodos = (
 }
 
 let nextTodoId = 0;
+
 const TodoApp =({
   todos,
   visibilityFilter
@@ -196,7 +199,6 @@ const TodoApp =({
       onAddClick={text =>
         store.dispatch({
           type: 'ADD_TODO',
-          text: this.input.value,
           id: nextTodoId++,
           text
         })
