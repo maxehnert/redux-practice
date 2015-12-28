@@ -222,45 +222,66 @@ const getVisibleTodos = (
   }
 }
 
-class VisibleTodoList extends Component {
-    componentDidMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  render() {
-    const props = this.props;
-    const { store } = this.context;
-    const state = store.getState();
-
-    return (
-      <TodoList
-        todos={
-          getVisibleTodos(
-            state.todos,
-            state.visibilityFilter
-          )
-        }
-        onTodoClick={id=>
-          store.dispatch({
-            type: 'TOGGLE_TODO',
-            id
-          })
-        }
-      />
-    );
-  }
-}
-
-VisibleTodoList.contextTypes = {
-  store: React.PropTypes.object
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(
+      state.todos,
+      state.visibilityFilter
+    )
+  };
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick: (id) => {
+      dispatch({
+        type: 'TOGGLE_TODO',
+        id
+      })
+    }
+  };
+};
+
+const { connect } = ReactRedux;
+// import { connect } from 'react-redux';
+
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList);
+
+// class VisibleTodoList extends Component {
+//     componentDidMount() {
+//     const { store } = this.context;
+//     this.unsubscribe = store.subscribe(() =>
+//       this.forceUpdate()
+//     );
+//   }
+
+//   componentWillUnmount() {
+//     this.unsubscribe();
+//   }
+
+//   render() {
+//     const props = this.props;
+//     const { store } = this.context;
+//     const state = store.getState();
+
+//     return (
+//       <TodoList
+//         todos={
+
+//         }
+//         onTodoClick={
+//         }
+//       />
+//     );
+//   }
+// }
+
+// VisibleTodoList.contextTypes = {
+//   store: React.PropTypes.object
+// };
 
 const TodoApp =() => (
   <div>
@@ -270,21 +291,25 @@ const TodoApp =() => (
   </div>
 );
 
-class Provider extends Component {
-  getChildContext() {
-    return {
-      store: this.props.store
-    };
-  }
+// class Provider extends Component {
+//   getChildContext() {
+//     return {
+//       store: this.props.store
+//     };
+//   }
 
-  render() {
-    return this.props.children;
-  }
-}
+//   render() {
+//     return this.props.children;
+//   }
+// }
 
-Provider.childContextTypes = {
-  store: React.PropTypes.object
-};
+// Provider.childContextTypes = {
+//   store: React.PropTypes.object
+// };
+
+const { Provider } = ReactRedux;
+// import { Provider } from 'react-redux';
+
 
 const { createStore } = Redux;
 
