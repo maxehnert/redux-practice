@@ -1,3 +1,15 @@
+// const { combineReducers } = Redux;
+// const { Component } = React;
+// const { connect } = ReactRedux;
+// const { Provider } = ReactRedux;
+// const { createStore } = Redux;
+import React, { PropTypes, Component } from 'react'
+import ReactDOM from 'react-dom'
+import { combineReducers, createStore } from 'redux'
+import { connect, Provider } from 'react-redux'
+import expect from 'expect'
+import deepFreeze from 'deep-freeze'
+
 //reducer
 const todo = (state, action) => {
   switch (action.type) {
@@ -50,7 +62,7 @@ const visibilityFilter = (
 };
 
 // calls multiple reducers and creates 1 reducer from them
-const { combineReducers } = Redux;
+//const { combineReducers } = Redux;
 const todoApp = combineReducers({
   todos,
   visibilityFilter
@@ -79,8 +91,8 @@ const setVisibilityFilter = (filter) => {
   };
 };
 
-const { Component } = React;
-const { connect } = ReactRedux;
+//const { Component } = React;
+//const { connect } = ReactRedux;
 // import { connect } from 'react-redux';
 
 const Link = ({
@@ -344,7 +356,7 @@ const TodoApp =() => (
 //   store: React.PropTypes.object
 // };
 
-const { Provider } = ReactRedux;
+//const { Provider } = ReactRedux;
 // import { Provider } from 'react-redux';
 
 

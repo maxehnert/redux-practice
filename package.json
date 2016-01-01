@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/maxehnert/redux-practice.git"
   },
+  "scripts": {
+    "start": "webpack-dev-server --hot --inline"
+  },
   "keywords": [
     "react",
     "redux"
