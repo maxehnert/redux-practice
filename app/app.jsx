@@ -1,8 +1,3 @@
-// const { combineReducers } = Redux;
-// const { Component } = React;
-// const { connect } = ReactRedux;
-// const { Provider } = ReactRedux;
-// const { createStore } = Redux;
 import React, { PropTypes, Component } from 'react'
 import ReactDOM from 'react-dom'
 import { combineReducers, createStore } from 'redux'
@@ -10,6 +5,14 @@ import { connect, Provider } from 'react-redux'
 import expect from 'expect'
 import deepFreeze from 'deep-freeze'
 
+// var React = require('react');
+// var ReactDOM = require('react-dom');
+// var combineReducers = require('redux');
+// var createStore = require('redux');
+// var connect = require('react-redux');
+// var Provider = require('react-redux');
+// var expect = require('expect');
+// var deepFreeze = require('deep-freeze');
 //reducer
 const todo = (state, action) => {
   switch (action.type) {
